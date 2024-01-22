@@ -71,7 +71,7 @@ const Dropdown = ({ onChangeHandler, value }: DropdownProps) => {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel className="bg-red-400 text-red-700 hover:bg-red-300 hover:text-red-600">
+                <AlertDialogCancel className="bg-red-300 text-red-600 hover:bg-red-400 hover:text-red-600">
                   Cancel
                 </AlertDialogCancel>
                 <AlertDialogAction

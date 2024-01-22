@@ -6,6 +6,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { CiLocationOn, CiCalendarDate } from "react-icons/ci";
 import { FiDollarSign } from "react-icons/fi";
+import { IoIosLink } from "react-icons/io";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -213,7 +214,12 @@ const EventForm = ({ userId, type }: EventProp) => {
                               >
                                 Free Ticket
                               </label>
-                              <Checkbox id="isFree" className="mr-2 h-5 w-5" />
+                              <Checkbox
+                                onCheckChang={field.onChange}
+                                check={field.value}
+                                id="isFree"
+                                className="mr-2 h-5 w-5"
+                              />
                             </div>
                           </FormControl>
                           <FormMessage />
@@ -226,9 +232,33 @@ const EventForm = ({ userId, type }: EventProp) => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="url"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <div className="flex-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4 py-2">
+                    <IoIosLink />
+                    <Input
+                      placeholder="URL"
+                      {...field}
+                      className="input-field"
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
-        <Button className="bg-blue-800" type="submit">
-          Submit
+        <Button
+          disabled={form.formState.isSubmitting}
+          className="bg-blue-800 col-span-2 w-full rounded-full"
+          type="submit"
+          size={"lg"}
+        >
+          {form.formState.isSubmitted ? "Submitting..." : `${type} Event`}
         </Button>
       </form>
     </Form>
