@@ -23,5 +23,8 @@ export const eventDefaultValue = {
   imageUrl: "",
   startDateTime: new Date(),
   endDateTime: new Date(),
+  price: "",
+  isFree: false,
+  url: "",
   categoryId: "",
 };

@@ -6,6 +6,12 @@ html,
 body {
   height: 100%;
 }
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
 
 @layer base {
   :root {
@@ -89,5 +95,35 @@ body {
   }
   .flex-between {
     @apply flex justify-between items-center;
+  }
+  .bg-primary {
+    @apply bg-gray-50;
+  }
+  /* 16 */
+  .p-bold-16 {
+    @apply text-[16px] font-bold leading-[24px];
+  }
+  .p-medium-16 {
+    @apply text-[16px] font-medium leading-[24px];
+  }
+
+  .p-regular-16 {
+    @apply text-[16px] font-normal leading-[24px];
+  }
+  /* SHADCN OVERRIDES */
+  .select-field {
+    @apply w-full bg-gray-50 h-[54px] placeholder:text-gray-500 rounded-full p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent focus:ring-transparent !important;
+  }
+
+  .input-field {
+    @apply bg-gray-50 h-[54px] focus-visible:ring-offset-0 placeholder:text-gray-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent !important;
+  }
+
+  .textarea {
+    @apply bg-gray-50 flex flex-1 placeholder:text-gray-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent !important;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
   }
 }
