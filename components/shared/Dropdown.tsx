@@ -1,3 +1,5 @@
+"use client";
+import { startTransition, useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -16,76 +18,86 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
-import { ICategory } from "@/lib/mongodb/db/models/category.model";
-import { startTransition, useState } from "react";
 import { Input } from "../ui/input";
+import {
+  createCategory,
+  getAllCategories,
+} from "@/lib/actions/category.actions";
+import { ICategory } from "@/lib/mongodb/db/models/category.model";
 
 type DropdownProps = {
   value?: string;
   onChangeHandler?: () => void;
 };
 
-const Dropdown = ({ onChangeHandler, value }: DropdownProps) => {
+const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const [categoty, setCategoty] = useState<string>("");
+  const [newCategory, setNewCategory] = useState("");
 
   const handleAddCategory = () => {
-    console.log("first");
+    createCategory({
+      categoryName: newCategory.trim(),
+    }).then((category) => {
+      setCategories((prevState) => [...prevState, category]);
+    });
   };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const categoryList = await getAllCategories();
+
+      categoryList && setCategories(categoryList as ICategory[]);
+    };
+
+    getCategories();
+  }, []);
+
   return (
-    <div>
-      <Select onValueChange={onChangeHandler} defaultValue={value}>
-        <SelectTrigger className="select-field">
-          <SelectValue
-            placeholder="Category"
-            className="text-white font-bold"
-          />
-        </SelectTrigger>
-        <SelectContent>
-          {categories.length > 0 &&
-            categories.map((catecory) => (
-              <SelectItem
-                value="light"
-                key={catecory._id}
-                className="text-gray-200"
+    <Select onValueChange={onChangeHandler} defaultValue={value}>
+      <SelectTrigger className="select-field">
+        <SelectValue placeholder="Category" />
+      </SelectTrigger>
+      <SelectContent>
+        {categories.length > 0 &&
+          categories.map((category) => (
+            <SelectItem
+              key={category._id}
+              value={category._id}
+              className="select-item p-regular-14"
+            >
+              {category.name}
+            </SelectItem>
+          ))}
+
+        <AlertDialog>
+          <AlertDialogTrigger className="flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">
+            Add new category
+          </AlertDialogTrigger>
+          <AlertDialogContent className="bg-white">
+            <AlertDialogHeader>
+              <AlertDialogTitle>New Category</AlertDialogTitle>
+              <AlertDialogDescription>
+                <Input
+                  type="text"
+                  placeholder="Category name"
+                  className="input-field mt-3"
+                  onChange={(e) => setNewCategory(e.target.value)}
+                />
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => startTransition(handleAddCategory)}
+                className="bg-blue-800 hover:bg-blue-600"
               >
-                {catecory.name}
-              </SelectItem>
-            ))}
-          <AlertDialog>
-            <AlertDialogTrigger className="flex w-full rounded-sm pl-8 py-3 text-blue-800 hover:text-blue-500">
-              Open
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>New category</AlertDialogTitle>
-                <AlertDialogDescription>
-                  <Input
-                    value={categoty}
-                    type="text"
-                    placeholder="Catery Name"
-                    onChange={(e) => setCategoty(e.target.value)}
-                    className="ring-0 focus:outline-none focus:border-none"
-                  />
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel className="bg-red-300 text-red-600 hover:bg-red-400 hover:text-red-600">
-                  Cancel
-                </AlertDialogCancel>
-                <AlertDialogAction
-                  className="bg-green-400 text-green-700 hover:bg-green-300 hover:text-hover-600"
-                  onClick={() => startTransition(handleAddCategory)}
-                >
-                  Add
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </SelectContent>
-      </Select>
-    </div>
+                Add
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </SelectContent>
+    </Select>
   );
 };
 

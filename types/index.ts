@@ -1,4 +1,4 @@
-// ====== USER PARAMS
+// ====== USER PARAMS =======
 export type CreateUserParams = {
   clerkId: string;
   firstName: string;
@@ -15,7 +15,7 @@ export type UpdateUserParams = {
   photo: string;
 };
 
-// ====== EVENT PARAMS
+// ====== EVENT PARAMS =======
 export type CreateEventParams = {
   userId: string;
   event: {
