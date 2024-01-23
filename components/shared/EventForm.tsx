@@ -215,8 +215,8 @@ const EventForm = ({ userId, type }: EventProp) => {
                                 Free Ticket
                               </label>
                               <Checkbox
-                                onCheckChang={field.onChange}
-                                check={field.value}
+                                onCheckedChange={field.onChange}
+                                checked={field.value}
                                 id="isFree"
                                 className="mr-2 h-5 w-5"
                               />
