@@ -9,7 +9,7 @@ const Header = () => {
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
-          Home
+          MohEvent
         </Link>
         <SignedIn>
           <nav className="md:flex-between hidden w-full max-w-xs">
@@ -23,7 +23,7 @@ const Header = () => {
             <MobileNav />
           </SignedIn>
           <SignedOut>
-            <Button asChild size="lg" className="rounded-full">
+            <Button asChild size="lg" className="rounded-full bg-purple-900">
               <Link href="/sign-in">Sign in</Link>
             </Button>
           </SignedOut>

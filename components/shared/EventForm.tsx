@@ -1,14 +1,6 @@
 "use client";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { CiLocationOn, CiCalendarDate } from "react-icons/ci";
-import { FiDollarSign } from "react-icons/fi";
-import { IoIosLink } from "react-icons/io";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -17,15 +9,23 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { eventFormSchema } from "@/lib/validator";
 import { eventDefaultValue } from "@/constants";
-import Dropdown from "./Dropdown";
-import { Textarea } from "../ui/textarea";
-import FileUploader from "./FileUploader";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useUploadThing } from "@/lib/uploadthing";
-import { useRouter } from "next/navigation";
 import { createEvent } from "@/lib/actions/event.actions";
+import { useUploadThing } from "@/lib/uploadthing";
+import { eventFormSchema } from "@/lib/validator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useForm } from "react-hook-form";
+import { CiCalendarDate, CiLocationOn } from "react-icons/ci";
+import { FiDollarSign } from "react-icons/fi";
+import { IoIosLink } from "react-icons/io";
+import * as z from "zod";
+import { Textarea } from "../ui/textarea";
+import Dropdown from "./Dropdown";
+import FileUploader from "./FileUploader";
 
 type EventProp = {
   userId: string;
@@ -222,7 +222,7 @@ const EventForm = ({ userId, type }: EventProp) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex items-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4  py-2">
-                    <FiDollarSign />
+                    <FiDollarSign className="h-5" />
                     <Input
                       type="number"
                       placeholder="Price"
