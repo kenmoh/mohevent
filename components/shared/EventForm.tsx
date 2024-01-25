@@ -26,18 +26,29 @@ import * as z from "zod";
 import { Textarea } from "../ui/textarea";
 import Dropdown from "./Dropdown";
 import FileUploader from "./FileUploader";
+import { IEvent } from "@/lib/mongodb/db/models/event.model";
 
 type EventProp = {
   userId: string;
   type: "Create" | "Update";
+  eventId?: string;
+  event?: IEvent;
 };
 
-const EventForm = ({ userId, type }: EventProp) => {
+const EventForm = ({ userId, type, event, eventId }: EventProp) => {
   const router = useRouter();
   const { startUpload } = useUploadThing("imageUploader");
   const [startDate, setStartDate] = useState(new Date());
   const [files, setFiles] = useState<File[]>([]);
-  const initialValues = eventDefaultValue;
+  const initialValues =
+    event && type === "Update"
+      ? {
+          ...event,
+          startDateTime: new Date(event.startDateTime),
+          endDateTime: new Date(event.endDateTime),
+        }
+      : eventDefaultValue;
+
   const form = useForm<z.infer<typeof eventFormSchema>>({
     resolver: zodResolver(eventFormSchema),
     defaultValues: initialValues,
