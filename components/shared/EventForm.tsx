@@ -163,7 +163,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4 py-2">
-                    <CiLocationOn />
+                    <CiLocationOn className="h-6 w-6" />
                     <Input
                       placeholder="Event Location or Online"
                       {...field}
@@ -184,7 +184,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex  gap-3 items-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4 py-2">
-                    <CiCalendarDate />
+                    <CiCalendarDate className="h-6 w-6" />
                     <p className="text-gray-500">Start Date: </p>
                     <DatePicker
                       selected={field.value}
@@ -208,7 +208,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex  gap-3 items-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4 py-2">
-                    <CiCalendarDate />
+                    <CiCalendarDate className="h-6 w-6" />
                     <p className="text-gray-500">End Date: </p>
                     <DatePicker
                       selected={field.value}
@@ -233,7 +233,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex items-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4  py-2">
-                    <FiDollarSign className="h-5" />
+                    <FiDollarSign className="h-6 w-6" />
                     <Input
                       type="number"
                       placeholder="Price"
@@ -278,7 +278,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
               <FormItem className="w-full">
                 <FormControl>
                   <div className="flex-center bg-gray-50 w-full h-[54px] overflow-hidden rounded-full px-4 py-2">
-                    <IoIosLink />
+                    <IoIosLink className="h-6 w-6" />
                     <Input
                       placeholder="URL"
                       {...field}

@@ -16,15 +16,15 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const userId = sessionClaims?.userId as string;
   const isEventCreator = userId === event.organizer._id.toString();
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[480px] flex-col overflow-hiiden rounded-xl bg-white shadow-ms hover:shadow-lg transition-all md:min-h-[438px]">
+    <div className="group relative flex min-h-[380px] w-full max-w-[480px] flex-col overflow-hidden rounded-xl bg-white shadow-ms hover:shadow-lg transition-all md:min-h-[438px]">
       <Link
-        href={`/event/${event._id}`}
+        href={`/events/${event._id}`}
         style={{ backgroundImage: ` url(${event.imageUrl})` }}
         className="flex items-center justify-center flex-grow bg-gray-50 bg-cover bg-center text-gray-500"
       />
       {/* EVENT CREATOR */}
       {isEventCreator && !hidePrice && (
-        <div className="absolute top-2 right-2 transition-all rounded-xl flex flex-col gap-4 bg-white p-3 shadow-sm">
+        <div className="absolute top-2 right-2 transition-all rounded-xl flex flex-col gap-6 bg-white p-3 shadow-sm">
           <Link href={`/events/${event._id}/update`}>
             <FiEdit className="h-4 w-4" />
             <DeleteConfirmation eventId={event._id} />
@@ -32,7 +32,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         </div>
       )}
       <Link
-        href={`/event/${event._id}`}
+        href={`/events/${event._id}`}
         className="flex min-h-[230px] flex-col p-5 gap:3 md:gap-4"
       >
         {!hidePrice && (
