@@ -27,8 +27,8 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         <div className="absolute top-2 right-2 transition-all rounded-xl flex flex-col gap-6 bg-white p-3 shadow-sm">
           <Link href={`/events/${event._id}/update`}>
             <FiEdit className="h-4 w-4" />
-            <DeleteConfirmation eventId={event._id} />
           </Link>
+          <DeleteConfirmation eventId={event._id} />
         </div>
       )}
       <Link
