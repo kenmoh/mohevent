@@ -81,7 +81,7 @@ export type Event = {
   title: string;
   description: string;
   price: string;
-  isFree: boolean;
+  // isFree: boolean;
   imageUrl: string;
   location: string;
   startDateTime: Date;
@@ -108,7 +108,7 @@ export type CheckoutOrderParams = {
   eventTitle: string;
   eventId: string;
   price: string;
-  isFree: boolean;
+  // isFree: boolean;
   buyerId: string;
 };
 

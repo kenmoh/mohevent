@@ -12,7 +12,7 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
       eventTitle: event.title,
       eventId: event._id,
       price: event.price,
-      isFree: event.isFree,
+      // isFree: event.isFree,
       buyerId: userId,
     };
     await checkoutOrder(order);
@@ -38,7 +38,7 @@ const Checkout = ({ event, userId }: { event: IEvent; userId: string }) => {
         className="bg-blue-500 rounded-full sm:w-fit"
         size={"lg"}
       >
-        {event.isFree ? "Get Ticket" : "Buy Ticket"}
+        {Number(event.price) <= 0 ? "Get Ticket" : "Buy Ticket"}
       </Button>
     </form>
   );
