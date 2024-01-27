@@ -17,7 +17,11 @@ const ProfilePage = async () => {
           <h3 className="font-bold text-xl text-center sm:text-left">
             My Tickets
           </h3>
-          <Button asChild size={"lg"} className="hidden sm:flex rounded-full">
+          <Button
+            asChild
+            size={"lg"}
+            className="hidden sm:flex rounded-full bg-blue-500 text-white"
+          >
             <Link href={"/#events"}>Explore More Events</Link>
           </Button>
         </div>
@@ -41,7 +45,11 @@ const ProfilePage = async () => {
           <h3 className="font-bold text-xl text-center sm:text-left">
             Events Organized
           </h3>
-          <Button asChild size={"lg"} className="hidden sm:flex rounded-full">
+          <Button
+            asChild
+            size={"lg"}
+            className="hidden sm:flex rounded-full  bg-blue-500 text-white"
+          >
             <Link href={"/events/create"}>Create New Event</Link>
           </Button>
         </div>
