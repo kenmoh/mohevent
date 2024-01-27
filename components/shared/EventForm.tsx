@@ -261,7 +261,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
                       {...field}
                       className="input-field"
                     />
-                    <FormField
+                    {/* <FormField
                       control={form.control}
                       name="isFree"
                       render={({ field }) => (
@@ -285,7 +285,7 @@ const EventForm = ({ userId, type, event, eventId }: EventProp) => {
                           <FormMessage />
                         </FormItem>
                       )}
-                    />
+                    /> */}
                   </div>
                 </FormControl>
                 <FormMessage />
