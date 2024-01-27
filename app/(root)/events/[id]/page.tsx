@@ -20,7 +20,7 @@ const EventDetails = async ({
   });
 
   return (
-    <div className="wrapper bg-contain bg-blue-50">
+    <div className="bg-contain bg-blue-50">
       <section className="flex justify-center ">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
           <Image
