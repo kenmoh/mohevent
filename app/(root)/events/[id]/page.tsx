@@ -7,6 +7,7 @@ import { SearchParamProps } from "@/types";
 import Image from "next/image";
 import { formatDateTime } from "@/lib/utils";
 import Collection from "@/components/shared/Collection";
+import CheckoutButton from "@/components/shared/CheckoutButton";
 
 const EventDetails = async ({
   params: { id },
@@ -21,7 +22,7 @@ const EventDetails = async ({
 
   return (
     <div className="bg-contain bg-blue-50">
-      <section className="flex justify-center ">
+      <section className=" wrapper flex justify-center ">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
           <Image
             src={event.imageUrl}
@@ -54,7 +55,7 @@ const EventDetails = async ({
               </div>
             </div>
 
-            {/* <CheckoutButton event={event} /> */}
+            <CheckoutButton event={event} />
 
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 md:gap-3">
