@@ -29,7 +29,7 @@ export default async function Home() {
               size="lg"
               className="w-full sm:w-fit bg-blue-800 rounded-full hover:bg-blue-700"
             >
-              <Link href="/events">Explore Events</Link>
+              <Link href="/#events">Explore Events</Link>
             </Button>
           </div>
           <Image

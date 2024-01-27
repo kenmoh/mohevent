@@ -6,6 +6,7 @@ import {
   GetAllEventsParams,
   GetEventsByUserParams,
   GetRelatedEventsByCategoryParams,
+  UpdateEventParams,
 } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../mongodb/db";
@@ -45,6 +46,7 @@ export const createEvent = async ({
       category: event.categoryId,
       organizer: userId,
     });
+    revalidatePath(path);
     return JSON.parse(JSON.stringify(newEvent));
   } catch (error) {
     handleError(error);
@@ -106,6 +108,29 @@ export const getAllEvents = async ({
     handleError(error);
   }
 };
+
+// UPDATE
+export async function updateEvent({ userId, event, path }: UpdateEventParams) {
+  try {
+    await connectToDatabase();
+
+    const eventToUpdate = await Event.findById(event._id);
+    if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
+      throw new Error("Unauthorized or event not found");
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(
+      event._id,
+      { ...event, category: event.categoryId },
+      { new: true }
+    );
+    revalidatePath(path);
+
+    return JSON.parse(JSON.stringify(updatedEvent));
+  } catch (error) {
+    handleError(error);
+  }
+}
 
 // DELETE
 export async function deleteEvent({ eventId, path }: DeleteEventParams) {

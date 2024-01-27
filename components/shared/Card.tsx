@@ -16,7 +16,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const userId = sessionClaims?.userId as string;
   const isEventCreator = userId === event.organizer._id.toString();
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[480px] flex-col overflow-hidden rounded-xl bg-white shadow-ms hover:shadow-lg transition-all md:min-h-[438px]">
+    <div className="group relative flex min-h-[380px] w-full max-w-[480px] flex-col overflow-hidden rounded-xl bg-white shadow-md hover:shadow-lg transition-all md:min-h-[438px]">
       <Link
         href={`/events/${event._id}`}
         style={{ backgroundImage: ` url(${event.imageUrl})` }}
@@ -31,10 +31,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           <DeleteConfirmation eventId={event._id} />
         </div>
       )}
-      <Link
-        href={`/events/${event._id}`}
-        className="flex min-h-[230px] flex-col p-5 gap:3 md:gap-4"
-      >
+      <div className="flex min-h-[230px] flex-col p-5 gap:3 md:gap-4">
         {!hidePrice && (
           <div className="flex gap-2">
             <span className="font-bold px-4 py-1 text-green-600 bg-green-100 rounded-full">
@@ -48,9 +45,11 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         <p className="text-gray-500">
           {formatDateTime(event.startDateTime).dateTime}
         </p>
-        <p className="line-clamp-2 text-xl md:text-2xl flex flex-1 text-black font-bold">
-          {event.title}
-        </p>
+        <Link href={`/events/${event._id}`}>
+          <p className="line-clamp-2 text-xl md:text-2xl flex flex-1 text-black font-bold">
+            {event.title}
+          </p>
+        </Link>
         <div className="flex justify-between w-full">
           <p className="=font-semibold text-xl text-gray-600">
             {event.organizer.firstName} {event.organizer.lastName}
@@ -61,7 +60,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
             </Link>
           )}
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

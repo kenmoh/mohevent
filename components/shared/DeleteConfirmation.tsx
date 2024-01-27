@@ -32,8 +32,8 @@ const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
       <AlertDialogContent className="bg-white">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure you want to delete?</AlertDialogTitle>
-          <AlertDialogDescription className="p-regular-16 text-grey-600">
-            This will permanently delete this event
+          <AlertDialogDescription className="p-regular-16 text-gray-600">
+            This will permanently delete this event!
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -41,6 +41,7 @@ const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
           <AlertDialogCancel>Cancel</AlertDialogCancel>
 
           <AlertDialogAction
+          className="bg-red-500"
             onClick={() =>
               startTransition(async () => {
                 await deleteEvent({ eventId, path: pathname });
