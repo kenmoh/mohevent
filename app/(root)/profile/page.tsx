@@ -1,6 +1,8 @@
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { getEventsByUser } from "@/lib/actions/event.actions";
+import { getOrdersByUser } from "@/lib/actions/order.actions";
+import { IOrder } from "@/lib/mongodb/db/models/order.model";
 import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +11,8 @@ const ProfilePage = async () => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
   const userEvents = await getEventsByUser({ userId, page: 1 });
+  const orders = await getOrdersByUser({ userId, page: 1 });
+  const orderdEvents = orders?.data?.map((order: IOrder) => order.event) || [];
   return (
     <>
       {/* USER TICKETS # */}
@@ -26,18 +30,18 @@ const ProfilePage = async () => {
           </Button>
         </div>
       </section>
-      {/* <section className="wrapper my-8">
+      <section className="wrapper my-8">
         <Collection
-          data={relatedEvents?.data}
+          data={orderdEvents}
           emptyTitle="No event tickets purchased yet"
           emptyStateSubtext="No worries - Plenty of exciting events to explore!"
           collectionType="My_Tickets"
           limit={3}
           urlParamName="ordersPage"
-          page={searchParams.page as string}
-          totalPages={relatedEvents?.totalPages}
+          page={1}
+          totalPages={2}
         />
-      </section> */}
+      </section>
 
       {/* USER ORGANIZED EVENTS */}
       <section className="bg-blue-50 bg-cover bg-center py-5 md:py-10">
